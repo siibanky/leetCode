@@ -7,7 +7,7 @@ function assertEqual(a, b) {
             throw new Error("objects not equal");
         }
     }
-    if (a !== b) {
+    else if (a !== b) {
         throw new Error("primitives ".concat(a, " and ").concat(b, " are not equal"));
     }
 }
