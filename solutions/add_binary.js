@@ -5,17 +5,20 @@ function addBinary(a, b) {
     var _a;
     _a = addZeroCushion(a, b), a = _a[0], b = _a[1];
     var carry = 0;
-    var result = "";
+    var rtn = [];
     for (var i = a.length - 1; i >= 0; i--) {
         var first = parseInt(a[i]);
         var second = parseInt(b[i]);
         var sum = first + second + carry;
         var isOdd = sum % 2 !== 0;
         var value = isOdd ? "1" : "0";
-        result = value + result;
+        rtn.push(value);
         carry = sum > 1 ? 1 : 0;
     }
-    return carry == 0 ? result : carry + result;
+    if (carry > 0) {
+        rtn.push(carry.toString());
+    }
+    return rtn.reverse().join("");
 }
 function addZeroCushion(x, y) {
     if (x.length < y.length) {

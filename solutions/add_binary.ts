@@ -4,17 +4,20 @@ function addBinary(a: string, b: string): string {
     [a, b] = addZeroCushion(a, b);
 
     let carry = 0;
-    let result = "";
+    const rtn: string[] = [];
     for (let i = a.length - 1; i >= 0; i--) {
         const first = parseInt(a[i]);
         const second = parseInt(b[i]);
         const sum = first + second + carry;
         const isOdd = sum % 2 !== 0;
         const value = isOdd ? "1" : "0";
-        result = value + result;
+        rtn.push(value);
         carry = sum > 1 ? 1 : 0;
     }
-    return carry == 0 ? result : carry + result;
+    if (carry > 0) {
+        rtn.push(carry.toString());
+    }
+    return rtn.reverse().join("");
 }
 
 
